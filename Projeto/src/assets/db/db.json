@@ -1,0 +1,40 @@
+{
+    "Showcase": [
+        {
+            "id": 1,
+            "img": "assets/img/bg-showcase-1.jpg",
+            "titulo":"Fully Responsive Design",
+            "descricao": "When you use a theme created by Start Bootstrap, you know that the theme will look great on any device, whether it's a phone, tablet, or desktop the page will behave responsively!"
+        },
+        {
+            "id": 2,
+            "img": "assets/img/bg-showcase-2.jpg",
+            "titulo":"Updated For Bootstrap 5",
+            "descricao": "Newly improved, and full of great utility classes, Bootstrap 5 is leading the way in mobile responsive web development! All of the themes on Start Bootstrap are now using Bootstrap 5!"
+        },
+        {
+            "id": 3,
+            "img": "assets/img/bg-showcase-3.jpg",
+            "titulo":"Easy to Use & Customize",
+            "descricao": "Landing Page is just HTML and CSS with a splash of SCSS for users who demand some deeper customization options. Out of the box, just add your content and images, and your new landing page will be ready to go!"
+        }
+    ],
+
+    "Testimonials": [
+        {
+            "id": 1,
+            "img": "assets/img/testimonials-1.jpg",
+            "titulo":"Testimonials 1"
+        },
+        {
+            "id": 2,
+            "img": "assets/img/testimonials-2.jpg",
+            "titulo":"Testimonials 2"
+        },
+        {
+            "id": 3,
+            "img": "assets/img/testimonials-3.jpg",
+            "titulo":"Testimonials 3"
+        }
+    ]
+}
