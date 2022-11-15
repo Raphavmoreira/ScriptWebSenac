@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Showcase } from './image';
 
@@ -10,11 +10,16 @@ import { Showcase } from './image';
 })
 export class ImageComponent implements OnInit {
 
+  httpOptions = {
+    headers: new HttpHeaders({'Content-Type' : 'application/json'})
+  };
+
   ngOnInit(): void {
   }
-
+  titulo = "PORTFOLIO";
+    
   catalogoShow: Showcase[] = [];
-  
+
   constructor(private fotos: HttpClient) 
   { 
     fotos.get<Showcase[]>('http://localhost:3000/Showcase').subscribe(caixa => this.catalogoShow = caixa)    
@@ -30,5 +35,10 @@ export class ImageComponent implements OnInit {
       this.Pares = !this.Pares;
       this.button = 'Mostrar Pares';
     }
+  }
+
+  deletar(id:number){
+    alert("Deletado com sucesso");
+    console.log(id);
   }
 }
