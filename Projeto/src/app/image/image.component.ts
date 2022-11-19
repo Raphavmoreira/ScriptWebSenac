@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { HttpHeaders } from '@angular/common/http';
 import { Showcase } from './image';
+import { DatabaseService } from '../service/database.service';
 
 @Component({
   selector: 'app-image',
@@ -10,20 +10,19 @@ import { Showcase } from './image';
 })
 export class ImageComponent implements OnInit {
 
+  constructor(private database: DatabaseService) {}
+
+  catalogoShow: Showcase[] = [];
+
+  ngOnInit() {
+    this.database.getFoto().subscribe(caixa => this.catalogoShow = caixa);
+  }
+
   httpOptions = {
     headers: new HttpHeaders({'Content-Type' : 'application/json'})
   };
 
-  ngOnInit(): void {
-  }
   titulo = "PORTFOLIO";
-    
-  catalogoShow: Showcase[] = [];
-
-  constructor(private fotos: HttpClient) 
-  { 
-    fotos.get<Showcase[]>('http://localhost:3000/Showcase').subscribe(caixa => this.catalogoShow = caixa)    
-  }
 
   Pares: boolean = true;
   button = 'Mostrar Pares';
@@ -39,6 +38,7 @@ export class ImageComponent implements OnInit {
 
   deletar(id:number){
     alert("Deletado com sucesso");
-    console.log(id);
+    this.database.delFoto(id).subscribe();
   }
+
 }

@@ -5,20 +5,20 @@
     
         <div class="form-group mt-3">
             <label for="">Informe o endereço da Imagem: </label>
-            <input class="form-control" type="url" formControlName="img">
+            <input class="form-control"  id="img" name ="img" [(ngModel)]="imagens.img" type="url" formControlName="img">
         </div>    
     
         <div class="form-group mt-3">
     
             <label for="">Informe o titulo da Imagem: </label>
-            <input class="form-control" type="text" formControlName="titulo">
+            <input class="form-control" id="titulo" name="titulo"[(ngModel)]="imagens.titulo" type="text" formControlName="titulo">
     
         </div>   
     
         <div class="form-group mt-3">
     
             <label for="">Informe a descrição da Imagem: </label>
-            <input class="form-control" type="text" formControlName="descricao">
+            <input class="form-control" id="descricao" name="descricao"[(ngModel)]="imagens.descricao"type="text" formControlName="descricao">
     
         </div>
         

@@ -2,8 +2,8 @@
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Foto } from './shared/foto';
+import { Showcase } from '../image/image';
+import { DatabaseService } from '../service/database.service';
 
 
 @Component({
@@ -14,36 +14,46 @@ import { Foto } from './shared/foto';
 
 export class FormularioComponent implements OnInit {
 
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  imagens: Showcase = {
+    id: 0,
+    img: "",
+    titulo: "",
+    descricao: ""
   };
-
-  formulario!: FormGroup;
-
-  imagens: Foto[] = [];
+  submitted = false;
 
   constructor(
-    private formBuilder: FormBuilder,
-    private http: HttpClient
-  ) { }
+    private formBuilder: FormBuilder, 
+    private database: DatabaseService
+    ) { }
+    
+    ngOnInit(): void {
+      this.validaForm();
+    }
 
-  ngOnInit(): void {
-    this.validaForm();
-  }
+    formulario!: FormGroup;
 
-  validaForm() {
-    this.formulario = this.formBuilder.group({
-      img: ['', [Validators.required]],
-      titulo: ['', [Validators.required]],
-      descricao: ['', [Validators.required]]
-    });
-  }
-
-  cadastro() {
-    alert("Cadastrado com sucesso");
-    this.http.post('http://localhost:3000/Showcase/', JSON.stringify(this.formulario.value), this.httpOptions).subscribe();
-  }
-
-
-
+    validaForm(){
+      this.formulario = this.formBuilder.group({
+        img: ['', [Validators.required]],
+        titulo: ['', [Validators.required]],
+        descricao: ['', [Validators.required]]
+      });
+    }
+  
+    cadastro(): void{
+      const data = {
+        img: this.imagens.img,
+        titulo: this.imagens.titulo,
+        descricao: this.imagens.descricao
+      };
+      this.database.postFoto(data)
+      .subscribe({
+        next: (res) => {
+          console.log(res);
+          this.submitted = true;
+        },
+        error: (e) => console.error(e)
+      });
+    }
 }
